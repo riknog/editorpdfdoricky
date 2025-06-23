@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de PDF Pro</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <header>
+        <h1>Editor de PDF Pro</h1>
+    </header>
+
+    <nav class="tab-nav">
+        <button id="tabSingle" class="tab-button active" aria-selected="true" role="tab" aria-controls="singlePdfSection">Operações em PDF Único</button>
+        <button id="tabMerge" class="tab-button" aria-selected="false" role="tab" aria-controls="mergePdfSection">Juntar PDFs</button>
+    </nav>
+
+    <main>
+        <section id="singlePdfSection" role="tabpanel" aria-labelledby="tabSingle">
+            <h2>Operações em PDF Único</h2>
+            <div class="file-upload-area">
+                <label for="pdfFile" class="file-label">Carregar PDF:</label>
+                <input type="file" id="pdfFile" accept=".pdf" aria-describedby="pdfFileInfo">
+                <p id="pdfFileInfo" class="file-info" aria-live="polite"></p>
+            </div>
+
+            <div id="singlePdfControls" class="controls-section" style="display: none;">
+                <div class="operation">
+                    <h3>Extrair Páginas</h3>
+                    <label for="splitPagesInput">Páginas (ex: 2-4, 6):</label>
+                    <input type="text" id="splitPagesInput" placeholder="ex: 1-3, 5" aria-label="Páginas para extrair">
+                    <button id="splitButton">Aplicar Extração</button>
+                </div>
+
+                <div class="operation">
+                    <h3>Rotacionar Todas as Páginas</h3>
+                    <label for="rotateAngleSelect">Ângulo:</label>
+                    <select id="rotateAngleSelect" aria-label="Ângulo de rotação">
+                        <option value="90">90° (sentido horário)</option>
+                        <option value="180">180°</option>
+                        <option value="270">270° (sentido horário)</option>
+                    </select>
+                    <button id="rotateButton">Aplicar Rotação</button>
+                </div>
+
+                <div class="operation">
+                    <h3>Remover Páginas</h3>
+                    <label for="removePagesInput">Páginas (ex: 1, 3, 5-7):</label>
+                    <input type="text" id="removePagesInput" placeholder="ex: 1, 3, 5-7" aria-label="Páginas para remover">
+                    <button id="removeButton">Aplicar Remoção</button>
+                </div>
+                
+                <div class="operation download-area">
+                    <h3>Download</h3>
+                    <button id="downloadPreviewButton" disabled>Baixar PDF Editado</button>
+                </div>
+            </div>
+
+            <div id="pdfPreviewContainer" style="display: none;">
+                <h3 id="previewLabel">Pré-visualização do PDF</h3>
+                <iframe id="pdfPreviewFrame" title="Pré-visualização do PDF" style="width: 100%; height: 500px; border: 1px solid #ccc;" aria-labelledby="previewLabel"></iframe>
+            </div>
+        </section>
+
+        <section id="mergePdfSection" role="tabpanel" aria-labelledby="tabMerge" style="display: none;">
+            <h2>Juntar Múltiplos PDFs</h2>
+            <div class="file-upload-area">
+                <label for="mergePdfFiles" class="file-label">Selecionar PDFs para Juntar:</label>
+                <input type="file" id="mergePdfFiles" accept=".pdf" multiple aria-describedby="mergeFileInfo">
+                <ul id="mergeFileInfo" class="file-list" aria-live="polite"></ul>
+            </div>
+            <div class="controls-section">
+                 <button id="mergeButton" disabled>Juntar e Baixar PDFs</button>
+            </div>
+        </section>
+
+        <div id="statusMessage" class="status-message" role="alert" aria-live="assertive"></div>
+    </main>
+
+    <footer>
+        <p>Editor de PDF Pro. Todas as operações são feitas no seu navegador.</p>
+    </footer>
+
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

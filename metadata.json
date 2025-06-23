@@ -1,0 +1,5 @@
+
+{
+  "name": "Editor de PDF Básico",
+  "description": "Um aplicativo web para realizar edições básicas em arquivos PDF, como extrair páginas, rotacionar e juntar múltiplos PDFs. Todas as operações são feitas no navegador do cliente."
+}
